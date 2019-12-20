@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 # from sqlalchemy.orm import Session
 # from sqlalchemy import create_engine
 
-from flask import Flask, jsonify, render_template, redirect
+from flask import Flask, jsonify, render_template, redirect, request
 # from flask_sqlalchemy import SQLAlchemy
 from flask_pymongo import PyMongo
 
@@ -54,6 +54,12 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+@app.route("/postblob", methods=['POST'])
+def post():
+	data = request.form['blob']
+	print(data)
+	return "Hello"
+
 
 
 
@@ -83,4 +89,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
