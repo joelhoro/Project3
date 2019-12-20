@@ -56,8 +56,12 @@ def index():
 
 @app.route("/postblob", methods=['POST'])
 def post():
-	data = request.form['blob']
-	print(data)
+	data = request.get_data()
+	fileFullPath = r'c:\temp\masha\test.wav'
+	with open(fileFullPath, 'wb+') as f:
+	        input = request.get_data()
+	        print(input)
+	        f.write(input)	
 	return "Hello"
 
 
