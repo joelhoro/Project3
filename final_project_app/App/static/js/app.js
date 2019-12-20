@@ -118,9 +118,7 @@ function stopRecording() {
 
 function postBlob(blob){
     var formData = new FormData()
-   	var filename = new Date().toISOString().replace(":","-")+".wav";
-
-    formData.append('file', blob, filename);
+    formData.append('file', blob);
 
     $.ajax({
         url: "/postblob", 

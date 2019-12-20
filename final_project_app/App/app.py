@@ -60,7 +60,7 @@ def post():
 	file = request.files['file']
 	root = r'c:\temp\masha'
 	dt = datetime.datetime.now()
-	fileFullPath = r'%s\%s.wav' % (root, dt.strftime("%Y%m%d-%H%M%S") )
+	fileFullPath = r'%s\%s.wav' % (root, dt.strftime("%Y%m%d-%H%M%S.%f")[:-3] )
 	file.save(fileFullPath)
 	return "Hello"
 
