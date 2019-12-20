@@ -6,6 +6,7 @@ import requests
 import time
 import csv
 import json
+import datetime
 from bs4 import BeautifulSoup
 # import sqlalchemy
 # from sqlalchemy.ext.automap import automap_base
@@ -56,12 +57,11 @@ def index():
 
 @app.route("/postblob", methods=['POST'])
 def post():
-	data = request.get_data()
-	fileFullPath = r'c:\temp\masha\test.wav'
-	with open(fileFullPath, 'wb+') as f:
-	        input = request.get_data()
-	        print(input)
-	        f.write(input)	
+	file = request.files['file']
+	root = r'c:\temp\masha'
+	dt = datetime.datetime.now()
+	fileFullPath = r'%s\%s.wav' % (root, dt.strftime("%Y%m%d-%H%M%S") )
+	file.save(fileFullPath)
 	return "Hello"
 
 

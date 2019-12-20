@@ -112,12 +112,15 @@ function stopRecording() {
 	gumStream.getAudioTracks()[0].stop();
 
 	//create the wav blob and pass it on to createDownloadLink
+	//rec.exportWAV(createDownloadLink);
 	rec.exportWAV(postBlob);
 }
 
 function postBlob(blob){
     var formData = new FormData()
-    formData.append('blob', blob)
+   	var filename = new Date().toISOString().replace(":","-")+".wav";
+
+    formData.append('file', blob, filename);
 
     $.ajax({
         url: "/postblob", 
@@ -126,7 +129,6 @@ function postBlob(blob){
         processData: false,
         contentType: false,
         success: function(data) {
-        	debugger;
             console.log(data);
         }
     });
@@ -164,5 +166,4 @@ function createDownloadLink(blob) {
 
 	//add the li element to the ol
 	recordingsList.appendChild(li);
-	debugger;
 }
